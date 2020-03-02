@@ -1,0 +1,27 @@
+[program:httpd]
+
+command=/usr/sbin/httpd -D FOREGROUND
+
+
+[program:vsftpd]
+command=vsftpd
+
+
+
+
+
+
+
+
+
+
+
+[program:docker-gen]
+command=docker-gen -watch -notify "supervisorctl restart dnsmasq" /etc/dnsmasq.tmpl /etc/dnsmasq.conf
+redirect_stderr=true
+
+[program:dnsmasq]
+command=dnsmasq -d -k
+redirect_stderr=true
+stdout_logfile=/dev/stdout
+stdout_logfile_maxbytes=0
